@@ -26,7 +26,6 @@ public class Pass {
     private String vendorName;
     private String vendorAddress;
     private Instant activationDate;
-    private Instant expireDate;
     private int passLength;
     private Boolean isActive;
 

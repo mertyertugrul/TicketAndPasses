@@ -31,7 +31,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-
+/**
+ * Test for service class of the application.
+ */
 class PassServiceTest {
 
     @InjectMocks
@@ -51,6 +53,10 @@ class PassServiceTest {
     private Pass passGiven, passGiven2, passGiven3;
     private Instant activationDate;
 
+    /**
+     * Before test starts, it creates 3 dummy customers, 3 vendors, 3 dummy passDatasources and 3 passes to use for
+     * other methods.
+     */
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -87,20 +93,17 @@ class PassServiceTest {
                 customer1.getCustomerId(),customer1.getFullName(),
                 customer1.getAddress(), vendor1.getVendorId(),
                 vendor1.getVendorName(), vendor1.getAddress(),
-                activationDate, activationDate.plus(passDatasource.getPassLength(),
-                ChronoUnit.HOURS), passDatasource.getPassLength(), true);
+                activationDate, passDatasource.getPassLength(), true);
         passGiven2 = new Pass(passId2.toString(), passDatasource2.getCity() ,
                 customer3.getCustomerId(),customer3.getFullName(),
                 customer3.getAddress(), vendor2.getVendorId(),
                 vendor2.getVendorName(), vendor2.getAddress(),
-                activationDate, activationDate.plus(passDatasource2.getPassLength(),
-                ChronoUnit.HOURS), passDatasource.getPassLength(), true);
+                activationDate, passDatasource.getPassLength(), true);
         passGiven3 = new Pass(passId3.toString(), passDatasource.getCity() ,
                 customer2.getCustomerId(),customer2.getFullName(),
                 customer2.getAddress(), vendor3.getVendorId(),
                 vendor3.getVendorName(), vendor3.getAddress(),
-                activationDate, activationDate.plus(passDatasource3.getPassLength(),
-                ChronoUnit.HOURS), passDatasource.getPassLength(), true);
+                activationDate, passDatasource.getPassLength(), true);
 
 
     }
@@ -127,10 +130,10 @@ class PassServiceTest {
         assertThat(passResult.getCustomerAddress()).isEqualTo("Boston, USA");
         assertThat(passResult.getVendorAddress()).isEqualTo("London, UK");
         assertThat(passResult.getActivationDate()).isEqualTo(activationDate);
-        assertThat(passResult.getExpireDate()).isEqualTo(activationDate.plus(4,
-                ChronoUnit.HOURS));
+
 
     }
+
 
     @Test
     void getAllPasses() {
@@ -178,12 +181,14 @@ class PassServiceTest {
         assertThat(resultPass.getCustomerAddress()).isEqualTo("Boston, USA");
         assertThat(resultPass.getVendorAddress()).isEqualTo("London, UK");
         assertThat(resultPass.getActivationDate()).isEqualTo(activationDate);
-        assertThat(resultPass.getExpireDate()).isEqualTo(activationDate.plus(4,
-                ChronoUnit.HOURS));
     }
 
+    /**
+     * Test for checking inactive passes. One Pass object given and it is expected checkPassActive method to return
+     * true.
+     */
     @Test
-    void checkPassActiveForActive() {
+    void checkPassActiveForActivePass() {
         // Given
         when(passRepository.findById(anyString())).thenReturn(Optional.ofNullable(passGiven));
 
@@ -197,8 +202,12 @@ class PassServiceTest {
         assertThat(passActivationRespond.getIsActive()).isTrue();
     }
 
+    /**
+     * Test for checking inactive passes. One Pass object given and it is expected checkPassActive method to return
+     * false.
+     */
     @Test
-    void checkPassActiveForInactive() {
+    void checkPassActiveForInactivePass() {
         // Given
         passGiven.setActivationDate(Instant.now().minus(12, ChronoUnit.HOURS));
         when(passRepository.findById(anyString())).thenReturn(Optional.ofNullable(passGiven));
@@ -209,9 +218,11 @@ class PassServiceTest {
         // Then
         assertThat(passActivationRespond).isNotNull();
         assertThat(passActivationRespond.getIsActive()).isFalse();
-
     }
 
+    /**
+     * verifyPass method test with valid vendor
+     */
     @Test
     void verifyPassValidVendor() {
         // Given
@@ -226,6 +237,9 @@ class PassServiceTest {
         assertThat(verificationRespond.getIsValid()).isTrue();
     }
 
+    /**
+     * verifyPass method test with invalid vendor
+     */
     @Test
     void verifyPassInvalidVendor() {
         // Given
@@ -240,6 +254,9 @@ class PassServiceTest {
         assertThat(verificationRespond.getIsValid()).isFalse();
     }
 
+    /**
+     * updatePassLength method to update pass duration, but not update start date.
+     */
     @Test
     void updatePassLengthNotStartDate() {
         // Given
@@ -258,6 +275,10 @@ class PassServiceTest {
         assertThat(resultPass.getActivationDate().toString()).isEqualTo(checkDate.toString());
     }
 
+
+    /**
+     * updatePassLength method to update pass duration, also update start date.
+     */
     @Test
     void updatePassLengthChangeStartDate() {
         // Given

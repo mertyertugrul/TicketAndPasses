@@ -69,7 +69,6 @@ public class PassService {
         newPass.setCityName(createPass.getCity());
         newPass.setActivationDate(Instant.now());
         newPass.setPassLength(createPass.getPassLength());
-        newPass.setExpireDate(Instant.now().plus(createPass.getPassLength(), ChronoUnit.HOURS));
         newPass.setIsActive(true);
 
         // Costumer information setting
@@ -201,13 +200,15 @@ public class PassService {
         } else{
             pass.setActivationDate(Instant.now());
             pass.setPassLength(passLength);
+            pass.setIsActive(true);
 
             return passRepository.save(pass);
         }
     }
 
     /**
-     * Delete the Pass from the database and throws exception if the PassId is invalid.
+     * Makes Active property of Pass object to false but does not delete the data from database throws exception if the
+     * PassId is invalid.
      * @param passId
      * @throws ApiRequestException
      */
