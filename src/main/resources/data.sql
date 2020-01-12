@@ -1,3 +1,4 @@
+
 DELETE FROM leisure_pass_test.customer WHERE customer.customer_id in (1,2,3);
 
 DELETE FROM leisure_pass_test.vendor WHERE vendor.vendor_id in (1,2,3);

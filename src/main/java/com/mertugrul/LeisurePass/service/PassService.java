@@ -70,6 +70,7 @@ public class PassService {
         newPass.setActivationDate(Instant.now());
         newPass.setPassLength(createPass.getPassLength());
         newPass.setExpireDate(Instant.now().plus(createPass.getPassLength(), ChronoUnit.HOURS));
+        newPass.setIsActive(true);
 
         // Costumer information setting
         newPass.setCustomerId(customerData.getCustomerId());
@@ -128,6 +129,11 @@ public class PassService {
         passActivationRespond.setIsActive(pass.getActivationDate().plus(pass.getPassLength(),
                 ChronoUnit.HOURS).isAfter(Instant.now()));
 
+        if (!passActivationRespond.getIsActive()){
+            pass.setIsActive(false);
+            passRepository.save(pass);
+        }
+
         return passActivationRespond;
 
     }
@@ -148,14 +154,15 @@ public class PassService {
             throw new ApiRequestException("Pass couldn't found for id: " + passId);
         });
 
+        VerificationRespond verificationRespond = new VerificationRespond();
+        verificationRespond.setVendorId(vendorId);
+        verificationRespond.setPassId(passId);
         if (pass.getVendorId().equals(vendorId)){
-            VerificationRespond verificationRespond = new VerificationRespond();
-            verificationRespond.setVendorId(vendorId);
-            verificationRespond.setPassId(passId);
             verificationRespond.setIsValid(true);
             return verificationRespond;
         } else {
-            throw new ApiRequestException("Vendor ID: " + vendorId + " is not valid for pass id: " + passId);
+            verificationRespond.setIsValid(false);
+            return verificationRespond;
         }
     }
 
@@ -163,7 +170,7 @@ public class PassService {
      * Retrieves Pass from database by ID and throws exception if ID is invalid.
      * UpdatePassRequest object is created from client Put Http request with JSON; PassId, length to update and
      * weather or not to change activation date as a parameter. Activation start date change based on the condition and
-     * update to the database.
+     * update to the database. If the pass is not active then start date change to now.
      * @param updatePassRequest
      * @return
      * @throws ApiRequestException
@@ -204,12 +211,13 @@ public class PassService {
      * @param passId
      * @throws ApiRequestException
      */
-    public void cancelPass(String passId){
+    public Pass cancelPass(String passId){
         Pass pass = passRepository.findById(passId).orElseThrow(() ->{
             throw new ApiRequestException("Pass couldn't found for id: " + passId);
         });
 
-        passRepository.delete(pass);
+        pass.setIsActive(false);
+        return passRepository.save(pass);
     }
 
 

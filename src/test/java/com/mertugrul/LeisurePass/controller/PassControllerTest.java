@@ -263,21 +263,20 @@ class PassControllerTest {
     public void verifyPass_testForUnknownVendorId() throws Exception{
         jsonMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
-        ApiRequestException apiRequestException;
+        VerificationRespond verificationRespond;
 
         Pass pass = addPass();
         assertNotNull(pass);
 
         MvcResult result = mockMvc.perform(get(URL+"/"+pass.getId()+"/vendor/"
                 + 2))
-                .andExpect(status().isBadRequest())
+                .andExpect(status().isOk())
                 .andReturn();
 
-        apiRequestException = jsonMapper.readValue(result.getResponse().getContentAsByteArray(),
-                ApiRequestException.class);
-
-        assertEquals("Vendor ID: 2 is not valid for pass id: " + pass.getId(),
-                apiRequestException.getMessage());
+        verificationRespond = jsonMapper.readValue(result.getResponse().getContentAsByteArray(),
+                VerificationRespond.class);
+        assertNotNull(verificationRespond);
+        assertFalse(verificationRespond.getIsValid());
     }
 
 

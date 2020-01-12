@@ -1,12 +1,14 @@
 package com.mertugrul.LeisurePass.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity @Table(name = "vendor")
 public class Vendor {
 

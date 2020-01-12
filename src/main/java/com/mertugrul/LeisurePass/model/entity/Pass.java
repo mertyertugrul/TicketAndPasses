@@ -1,6 +1,8 @@
 package com.mertugrul.LeisurePass.model.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,6 +10,8 @@ import java.time.Instant;
 
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity @Table(name = "pass")
 public class Pass {
 
@@ -24,5 +28,6 @@ public class Pass {
     private Instant activationDate;
     private Instant expireDate;
     private int passLength;
+    private Boolean isActive;
 
 }
