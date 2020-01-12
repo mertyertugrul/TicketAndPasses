@@ -152,6 +152,8 @@ class PassControllerTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
+        pass = jsonMapper.readValue(result.getResponse().getContentAsByteArray(), Pass.class);
+        assertFalse(pass.getIsActive());
     }
 
     /**

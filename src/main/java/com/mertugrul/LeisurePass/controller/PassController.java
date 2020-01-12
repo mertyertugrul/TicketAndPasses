@@ -51,8 +51,8 @@ public class PassController {
     }
 
     @DeleteMapping("{passId}/deletion")
-    public void CancelPass(@PathVariable("passId") String passId){
-        passService.cancelPass(passId);
+    public Pass CancelPass(@PathVariable("passId") String passId){
+        return passService.cancelPass(passId);
     }
 
 }
