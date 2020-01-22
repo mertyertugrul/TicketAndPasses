@@ -1,11 +1,11 @@
-package com.mertugrul.LeisurePass.controller;
+package com.mertugrul.TicketAndPasses.controller;
 
-import com.mertugrul.LeisurePass.model.PassActivationRespond;
-import com.mertugrul.LeisurePass.model.PassDatasource;
-import com.mertugrul.LeisurePass.model.UpdatePassRequest;
-import com.mertugrul.LeisurePass.model.VerificationRespond;
-import com.mertugrul.LeisurePass.model.entity.Pass;
-import com.mertugrul.LeisurePass.service.PassService;
+import com.mertugrul.TicketAndPasses.model.PassActivationRespond;
+import com.mertugrul.TicketAndPasses.model.PassDatasource;
+import com.mertugrul.TicketAndPasses.model.UpdatePassRequest;
+import com.mertugrul.TicketAndPasses.model.VerificationRespond;
+import com.mertugrul.TicketAndPasses.model.entity.Pass;
+import com.mertugrul.TicketAndPasses.service.PassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;

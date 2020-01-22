@@ -1,6 +1,6 @@
-package com.mertugrul.LeisurePass.repo;
+package com.mertugrul.TicketAndPasses.repo;
 
-import com.mertugrul.LeisurePass.model.entity.Vendor;
+import com.mertugrul.TicketAndPasses.model.entity.Vendor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

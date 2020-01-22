@@ -1,16 +1,16 @@
-package com.mertugrul.LeisurePass.service;
+package com.mertugrul.TicketAndPasses.service;
 
-import com.mertugrul.LeisurePass.exception.ApiRequestException;
-import com.mertugrul.LeisurePass.model.PassActivationRespond;
-import com.mertugrul.LeisurePass.model.PassDatasource;
-import com.mertugrul.LeisurePass.model.UpdatePassRequest;
-import com.mertugrul.LeisurePass.model.VerificationRespond;
-import com.mertugrul.LeisurePass.model.entity.Customer;
-import com.mertugrul.LeisurePass.model.entity.Pass;
-import com.mertugrul.LeisurePass.model.entity.Vendor;
-import com.mertugrul.LeisurePass.repo.CustomerRepository;
-import com.mertugrul.LeisurePass.repo.PassRepository;
-import com.mertugrul.LeisurePass.repo.VendorRepository;
+import com.mertugrul.TicketAndPasses.exception.ApiRequestException;
+import com.mertugrul.TicketAndPasses.model.PassActivationRespond;
+import com.mertugrul.TicketAndPasses.model.PassDatasource;
+import com.mertugrul.TicketAndPasses.model.UpdatePassRequest;
+import com.mertugrul.TicketAndPasses.model.VerificationRespond;
+import com.mertugrul.TicketAndPasses.model.entity.Customer;
+import com.mertugrul.TicketAndPasses.model.entity.Pass;
+import com.mertugrul.TicketAndPasses.model.entity.Vendor;
+import com.mertugrul.TicketAndPasses.repo.CustomerRepository;
+import com.mertugrul.TicketAndPasses.repo.PassRepository;
+import com.mertugrul.TicketAndPasses.repo.VendorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

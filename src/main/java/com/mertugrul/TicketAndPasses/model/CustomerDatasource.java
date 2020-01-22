@@ -1,4 +1,4 @@
-package com.mertugrul.LeisurePass.model;
+package com.mertugrul.TicketAndPasses.model;
 
 import lombok.Data;
 

@@ -2,12 +2,11 @@ package com.mertugrul.LeisurePass.controller;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mertugrul.LeisurePass.exception.ApiRequestException;
-import com.mertugrul.LeisurePass.model.PassActivationRespond;
-import com.mertugrul.LeisurePass.model.PassDatasource;
-import com.mertugrul.LeisurePass.model.UpdatePassRequest;
-import com.mertugrul.LeisurePass.model.VerificationRespond;
-import com.mertugrul.LeisurePass.model.entity.Pass;
+import com.mertugrul.TicketAndPasses.model.PassActivationRespond;
+import com.mertugrul.TicketAndPasses.model.PassDatasource;
+import com.mertugrul.TicketAndPasses.model.UpdatePassRequest;
+import com.mertugrul.TicketAndPasses.model.VerificationRespond;
+import com.mertugrul.TicketAndPasses.model.entity.Pass;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.security.PrivateKey;
 import java.time.Instant;
 
 import static org.junit.Assert.assertEquals;

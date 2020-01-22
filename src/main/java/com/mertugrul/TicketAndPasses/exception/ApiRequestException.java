@@ -1,4 +1,4 @@
-package com.mertugrul.LeisurePass.exception;
+package com.mertugrul.TicketAndPasses.exception;
 
 public class ApiRequestException extends RuntimeException {
 
