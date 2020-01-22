@@ -1,4 +1,6 @@
-# Leisure Pass Service API Challenge
+# Tickets And Passes API
+
+This is an RESTful API made with Java 11 and Spring Boot. The API can create, update and change tickets or passes for a ticket application.
 
 ## Requirements
 This project use [MySQL](https://www.mysql.com/) for database, [for information how to install.](https://dev.mysql.com/doc/mysql-getting-started/en/) Scheme named '_leisure_pass_test_' must be pre-created before running the application. Or this can be changed by modifying to existing scheme under src/main/resources/application.properties .
